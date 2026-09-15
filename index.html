@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>The Quiet Sandbox</title>
+  <meta name="description" content="A calm, low-sensory play space for young children." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Home-only layout */
+    #home {
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .home-title {
+      color: var(--ink-soft);
+      font-weight: 600;
+      font-size: clamp(20px, 3.4vw, 30px);
+      letter-spacing: 0.04em;
+      margin: 0 0 clamp(18px, 4vh, 40px);
+      text-align: center;
+      opacity: 0.85;
+    }
+    .doors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(16px, 3vw, 32px);
+      justify-content: center;
+      align-items: stretch;
+      max-width: 980px;
+    }
+    .door {
+      flex: 1 1 220px;
+      max-width: 300px;
+      min-height: 240px;
+      background: var(--cream);
+      border-radius: 28px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 28px 22px;
+      box-shadow: 0 6px 22px rgba(74, 68, 59, 0.10);
+      transition: transform var(--slow) var(--ease),
+                  box-shadow var(--slow) var(--ease),
+                  background var(--slow) var(--ease);
+    }
+    .door:hover  { transform: translateY(-6px);
+                   box-shadow: 0 12px 28px rgba(74, 68, 59, 0.14); }
+    .door:active { transform: translateY(-2px) scale(0.99); }
+    .door svg { width: 92px; height: 92px; }
+    .door .label {
+      font-size: clamp(17px, 2.4vw, 21px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .door .sub {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-align: center;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="stage" id="bg" aria-hidden="true"></canvas>
+
+  <div class="screen" id="home">
+    <h1 class="home-title">The Quiet Sandbox</h1>
+    <nav class="doors" aria-label="Choose a quiet place to play">
+
+      <a class="door" href="activities/balance.html" data-activity="balance">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#6f5540"
+             stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 42 L82 58" />
+          <path d="M50 50 L44 78 L56 78 Z" fill="#9c7a58" stroke="#6f5540"/>
+          <circle cx="24" cy="41" r="9" fill="#7a9a80"/>
+          <circle cx="77" cy="59" r="9" fill="#8fa2ab"/>
+        </svg>
+        <span class="label">Balancing Branch</span>
+        <span class="sub">Rest little animals on the branch and feel it tip.</span>
+      </a>
+
+      <a class="door" href="activities/sift.html" data-activity="sift">
+        <svg viewBox="0 0 100 100" fill="none">
+          <rect x="16" y="24" width="68" height="56" rx="12" fill="#e3d6ba"/>
+          <path d="M30 62 q10 -8 20 0 q10 8 20 0" stroke="#cdba95"
+                stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="50" y="52" font-size="30" font-family="Segoe UI, sans-serif"
+                fill="#c39a80" text-anchor="middle" font-weight="700">A</text>
+        </svg>
+        <span class="label">Sifting Box</span>
+        <span class="sub">Sweep the sand to find what is hiding underneath.</span>
+      </a>
+
+      <a class="door" href="activities/stream.html" data-activity="stream">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#5f7178"
+             stroke-width="4" stroke-linecap="round">
+          <path d="M14 34 q18 -10 36 0 q18 10 36 0"/>
+          <path d="M14 50 q18 -10 36 0 q18 10 36 0"/>
+          <path d="M14 66 q18 -10 36 0 q18 10 36 0"/>
+          <circle cx="50" cy="50" r="7" fill="#8ea0a6" stroke="none"/>
+        </svg>
+        <span class="label">Water Stream</span>
+        <span class="sub">Drop stones and leaves to guide the flowing water.</span>
+      </a>
+
+    </nav>
+  </div>
+
+  <div class="corner right" id="corner"></div>
+
+  <script src="js/palette.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* The Quiet Sandbox — shared calm-tech styles
+   Muted natural palette, slow transitions, generous touch targets.
+   Nothing bright, nothing flashing. */
+
+:root {
+  /* Muted natural palette */
+  --bg:          #ece4d2; /* warm sandy background */
+  --cream:       #f4eede; /* soft light surface */
+  --sand:        #e3d6ba;
+  --sand-deep:   #cdba95;
+  --clay:        #c39a80;
+  --forest:      #52705a; /* deep forest green */
+  --forest-soft: #7a9a80;
+  --stone:       #8ea0a6; /* river-stone blue-grey */
+  --stone-deep:  #5f7178;
+  --wood:        #9c7a58; /* warm wood brown */
+  --wood-deep:   #6f5540;
+  --ink:         #4a443b; /* soft near-black for text */
+  --ink-soft:    #7d766a;
+
+  --ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --slow: 650ms;
+  --font: "Segoe UI", "Avenir Next", "Nunito", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;              /* full-screen calm canvas, no scroll bars */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* Slow, gentle page fade-in. Pages start faded, then settle. */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity var(--slow) var(--ease);
+}
+.screen.ready { opacity: 1; }
+/* Used when navigating away, before the browser follows the link. */
+body.leaving .screen { opacity: 0; }
+
+/* Full-bleed drawing canvas */
+canvas.stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;            /* let us own the drag gestures */
+}
+
+/* --- Small, unobtrusive controls ------------------------------------- */
+
+.corner {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+.corner.left  { left:  max(14px, env(safe-area-inset-left)); }
+.corner.right { right: max(14px, env(safe-area-inset-right)); }
+
+.softbtn {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  transition: background var(--slow) var(--ease),
+              transform var(--slow) var(--ease),
+              opacity var(--slow) var(--ease);
+  box-shadow: 0 2px 8px rgba(74, 68, 59, 0.10);
+}
+.softbtn:hover  { background: rgba(255, 255, 255, 0.7); }
+.softbtn:active { transform: scale(0.94); }
+.softbtn svg { width: 26px; height: 26px; fill: none;
+  stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round; }
+
+/* A quiet caption / title, kept low-contrast */
+.caption {
+  position: fixed;
+  left: 0; right: 0;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: clamp(15px, 2.2vw, 19px);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen { transition: opacity 200ms linear; }
+  * { animation: none !important; }
+}

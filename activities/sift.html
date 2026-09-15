@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>The Sifting Box</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* stack the two canvases exactly on top of each other */
+    #reveal, #sand { position: absolute; inset: 0; }
+    #reveal { z-index: 1; }
+    #sand   { z-index: 2; }
+    .pour {
+      position: fixed;
+      left: 50%;
+      bottom: max(22px, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 10;
+      border: none;
+      cursor: pointer;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      color: var(--ink-soft);
+      font: 600 17px/1 var(--font);
+      letter-spacing: 0.02em;
+      box-shadow: 0 3px 12px rgba(74,68,59,0.12);
+      transition: transform var(--slow) var(--ease), background var(--slow) var(--ease);
+    }
+    .pour:hover  { background: rgba(255,255,255,0.75); }
+    .pour:active { transform: translateX(-50%) scale(0.96); }
+    .found {
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 92px;
+      text-align: center;
+      z-index: 10;
+      color: var(--ink-soft);
+      font: 600 clamp(18px,3vw,24px)/1 var(--font);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      transition: opacity var(--slow) var(--ease);
+      pointer-events: none;
+    }
+    .found.show { opacity: 0.95; }
+  </style>
+</head>
+<body>
+  <div class="screen" id="screen">
+    <canvas class="stage" id="reveal"></canvas>
+    <canvas class="stage" id="sand"></canvas>
+  </div>
+
+  <div class="corner left" id="corner-left"></div>
+  <div class="corner right" id="corner-right"></div>
+  <div class="found" id="found"></div>
+  <button class="pour" id="pour" type="button">Pour fresh sand</button>
+
+  <script src="../js/palette.js"></script>
+  <script src="../js/audio.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/sift.js"></script>
+</body>
+</html>
