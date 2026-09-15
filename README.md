@@ -13,6 +13,7 @@ colors with soft sounds.
 | **Balancing Branch** | Drags woodland animals onto a branch and watches it tip | Weight, balance, counting, cause & effect |
 | **Sifting Box** | Sweeps sand away with a finger to uncover a hidden letter, number, or shape | Letters, numbers, shapes, fine-motor control |
 | **Water Stream** | Drops stones, leaves, and twigs to redirect a flowing current | Cause & effect, spatial reasoning |
+| **Pebble Path** | Tilts and drags wooden ramps to send a pebble tumbling past checkpoints | Numbers/letters (checkpoints), counting, cause & effect |
 
 ## Running it
 
@@ -49,6 +50,7 @@ quiet-sandbox/
     balance.html        Balancing Branch
     sift.html           Sifting Box
     stream.html         Water Stream
+    tumble.html         Pebble Path
   css/style.css         shared palette + calm transitions
   js/
     palette.js          shared colors for canvas drawing
@@ -56,7 +58,7 @@ quiet-sandbox/
     audio.js            procedural Web Audio soundscape + mute
     shapes.js           code-drawn woodland creatures
     nav.js              shared back button, mute button, canvas sizing
-    home.js  balance.js  sift.js  stream.js
+    home.js  balance.js  sift.js  stream.js  tumble.js
   tests/test.html       open in a browser to run the core unit tests
 ```
 
